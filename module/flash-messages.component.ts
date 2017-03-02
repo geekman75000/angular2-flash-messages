@@ -43,11 +43,15 @@ export class FlashMessagesComponent implements OnInit {
         let message = new FlashMessage(text, defaults.cssClass);
         this.messages.push(message);
         this._cdRef.detectChanges();
-
-        window.setTimeout(() => {
+        
+        if(defaults.timeout)
+        {
+          window.setTimeout(() => {
             this._remove(message);
             this._cdRef.detectChanges();
-        }, defaults.timeout);
+          }, defaults.timeout);
+        }
+
     }
     
     grayOut(value = false) {
